@@ -9,16 +9,19 @@ import Starred from './Component/Starred';
 import Snoozed from './Component/snoozed/Snoozed';
 import Sent from './Component/Sent/Sent';
 import Draft from './Component/snoozed/Draft/Draft';
+import Gmailapi from './GmailAPI/Gmailapi';
 
 function App() {
   return (
     <>
-      <div class="body-wrapper">
+      <Gmailapi />
+
+      {/* <div class="body-wrapper">
 
         <Header />
-        <Leftsidebar />
+        <Leftsidebar/>
         <Routes>
-          <Route path="/inbox" element={<Body />} />
+          <Route path="/aman" element={<Body />} />
           <Route path="/starred" element={<Starred />} />
           <Route path="/snoozed" element={<Snoozed />} />
           <Route path="/sent" element={<Sent />} />
@@ -26,9 +29,37 @@ function App() {
         </Routes>
         <Rightsider />
         <Footer />
-      </div>
+      </div> */}
     </>
   );
 }
 
 export default App;
+
+
+// import { useRef, useState } from 'react';
+// import './App.css';
+
+// function App() {
+//   const hook = useRef('')
+//   const [name, setName] = useState("Input field")
+
+//   function Reset() {
+//     setName("")
+//     hook.current.focus()
+//   }
+//   function Color() {
+//     hook.current.style.color = 'red'
+//   }
+
+//   return (
+//     <div className="App">
+//       <h1>useRef</h1>
+//       <input ref={hook} type='text' value={name} onChange={(e) => setName(e.target.value)} />
+//       <button onClick={Reset}>Reset</button>
+//       <button onClick={Color}> Change input color</button>
+//     </div>
+//   );
+
+// }
+// export default App;
