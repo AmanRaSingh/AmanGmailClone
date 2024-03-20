@@ -20,8 +20,54 @@ import archive2 from '../icons/archive_black_24dp.svg'
 import delete3 from '../icons/delete_black_24dp.svg'
 import markas1 from '../icons/mark_as_unread_black_24dp.svg'
 import accesstime3 from '../icons/access_time_filled_black_24dp.svg'
-
+import { useEffect } from 'react'
 function Inbox() {
+
+    useEffect(() => {
+        const url = window.location.href;
+        const token = url.match(/access_token=([^&]+)/);
+        localStorage.setItem("Token", token && token[1]);
+        getEmailData()
+    }, [])
+
+    const getEmailData = () => {
+        let token = localStorage.getItem("Token");
+        console.log("hello", token);
+        let url = "https://gmail.googleapis.com/gmail/v1/users/me/messages"
+        const options = {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(url, options)
+            .then(response => response.json())
+            .then(json => fetchMail(json.messages))
+            .catch(error => console.log('Error in fetching mails', error))
+    }
+    const fetchMail = (id) => {
+        console.log("message is in==", id)
+        // let id="18e28f8a1ea93a27";
+
+        let token = localStorage.getItem("Token")
+        const options = {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': `application/json`
+            }
+        }
+        for (let message_id of id.slice(0, 10)) {
+            console.log("message is===", message_id.id)
+            let url = `https://gmail.googleapis.com/gmail/v1/users/me/messages/${message_id.id}`;
+            fetch(url, options)
+                .then(response => response.json())
+                .then(json => console.log("mails data is", json))
+                .catch(error => console.log('Error in fetching mails', error))
+        }
+
+    }
     return (
         <>
             <div class="mail">

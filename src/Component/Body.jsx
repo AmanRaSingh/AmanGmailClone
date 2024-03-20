@@ -8,6 +8,7 @@ import keyboard from './icons/keyboard_black_24dp.svg'
 import arrowdrop from './icons/arrow_drop_down_black_24dp.svg'
 import Inbox from './Inbox/Inbox'
 import Sent from './Sent/Sent'
+import Login from './Login'
 import Snoozed from './snoozed/Snoozed'
 import Draft from './snoozed/Draft/Draft'
 import Starred from './Starred'
@@ -15,24 +16,38 @@ import Starred from './Starred'
 
 const Body = ({ params }) => {
   console.log(params)
+  let renderComponent = (component) => {
+    let data;
+    switch (component) {
+      case "inbox":
+        data = <Inbox />
+        break;
+      case "sent":
+        data = <Sent />
+        break;
+      default:
+        data = <Login />
+        break;
+    }
+    return data;
 
-  let message;
+  }
 
-  if (params === "sent") {
-    message = <Sent />
-  }
-  else if (params === "snoozed") {
-    message = <Snoozed />
-  }
-  else if (params === "draft") {
-    message = <Draft />
-  }
-  else if (params === "starred") {
-    message = <Starred />
-  }
-  else {
-    message = <Inbox />
-  }
+  // if (params === "sent") {
+  //   message = <Sent />
+  // }
+  // else if (params === "snoozed") {
+  //   message = <Snoozed />
+  // }
+  // else if (params === "draft") {
+  //   message = <Draft />
+  // }
+  // else if (params === "starred") {
+  //   message = <Starred />
+  // }
+  // else {
+  //   message = <Inbox />
+  // }
 
 
   return (
@@ -113,15 +128,13 @@ const Body = ({ params }) => {
 
         </div>
         <div class="content">
+          {renderComponent(params)}
           {/* {params == "inbox"? <Inbox /> : <Starred />} */}
           {/* <Inbox />
           <Sent /> */}
           {/* <Snoozed /> */}
           {/* <Draft /> */}
 
-          {
-            message
-          }
         </div>
       </div>
     </section>

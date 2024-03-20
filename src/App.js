@@ -14,12 +14,12 @@ function App() {
         <Header />
         <Leftsidebar />
         <Routes>
-          <Route path="/" element={<Body params="inbox" />} />
+          <Route path="/" element={<Body params="" />} />
           <Route path="inbox" element={<Body params="inbox" />} />
           <Route path="sent" element={<Body params="sent" />} />
-          <Route path='draft' element={<Body params="draft" />} />
+          {/* <Route path='draft' element={<Body params="draft" />} />
           <Route path="snoozed" element={<Body params="snoozed" />} />
-          <Route path="starred" element ={ <Body params="starred"/>}/>
+          <Route path="starred" element ={ <Body params="starred"/>}/> */}
 
         </Routes>
 
