@@ -15,6 +15,26 @@ import Starred from './Starred'
 
 const Body = ({ params }) => {
   console.log(params)
+
+  let message;
+
+  if (params === "sent") {
+    message = <Sent />
+  }
+  else if (params === "snoozed") {
+    message = <Snoozed />
+  }
+  else if (params === "draft") {
+    message = <Draft />
+  }
+  else if (params === "starred") {
+    message = <Starred />
+  }
+  else {
+    message = <Inbox />
+  }
+
+
   return (
     <section class="inbox" >
 
@@ -93,11 +113,15 @@ const Body = ({ params }) => {
 
         </div>
         <div class="content">
-          {params == "inbox"? <Inbox /> : <Starred />}
+          {/* {params == "inbox"? <Inbox /> : <Starred />} */}
           {/* <Inbox />
           <Sent /> */}
-           <Snoozed />
-           <Draft />
+          {/* <Snoozed /> */}
+          {/* <Draft /> */}
+
+          {
+            message
+          }
         </div>
       </div>
     </section>
